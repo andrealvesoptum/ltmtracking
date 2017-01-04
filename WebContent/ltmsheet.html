@@ -1,0 +1,472 @@
+<html>
+<head>
+  <title>LTM Sheet</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="js/controllers/ltm.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<section id="assessment" ng-app="LTMApp">
+  <section ng-controller="ltmController">
+    <div id="summary"  align="center">
+      <table>
+        <tr>
+          <td class="softskillstotal" colspan="4" width="90%">
+            Soft Skills
+          </td>
+          <td>
+            {{softSkillTotal * .50 | number:2}}%
+          </td>
+        </tr>
+        <tr>
+          <td class="mainframeskillstotal" colspan="4" width="90%">
+            Mainframe Skills
+          </td>
+          <td>
+            {{mainframeSkillTotal * .40 | number:2}}%
+          </td>
+        </tr>
+        <tr>
+          <td class="modernskillstotal" colspan="4" width="90%">
+            Modern Skills
+          </td>
+          <td>
+            {{modernSkillTotal * .10 | number:2}}%
+          </td>
+        </tr>
+        <tr>
+          <th colspan="4" width="90%">
+            <strong>Total</strong>
+          </th>
+          <td>
+            {{(softSkillTotal * .50) + (mainframeSkillTotal * .40) + (modernSkillTotal * .10) | number:2}}%
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <div id="softskills">
+      <table align="center">
+        <tr  class="softskillsheader">
+          <th width="8%">
+            <strong>Criteria</strong>
+          </th>
+          <th width="15%">
+            <strong>Expectation</strong>
+          </th>
+          <th width="5%">
+            <strong>Weight</strong>
+          </th>
+          <th width="5%">
+            <strong>Score</strong>
+          </th>
+          <th width="15%">
+            <strong>Reason</strong>
+          </th>
+          <th width="5%">
+            <strong>Percentage</strong>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Soft Skills<br />
+            50% of Overall Ranking
+          </td>
+          <td>
+            Leadership, innovation, team player qualities.
+          </td>
+          <td>
+            {{softSkillWeight.id_1}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="softSkillSelect.id_1" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{softSkillWeight.id_1 * softSkillSelect.id_1}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            High level/caliber logic, and analytical skills.
+          </td>
+          <td>
+            {{softSkillWeight.id_2}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="softSkillSelect.id_2" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{softSkillWeight.id_2 * softSkillSelect.id_2}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            Desire to learn, mentor, and work independently.
+          </td>
+          <td>
+            {{softSkillWeight.id_3}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="softSkillSelect.id_3" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{softSkillWeight.id_3 * softSkillSelect.id_3}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            Over the last 2+ years lead/working on new projects.
+          </td>
+          <td>
+            {{softSkillWeight.id_4}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="softSkillSelect.id_4" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{softSkillWeight.id_4 * softSkillSelect.id_4}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <strong>Percentage</strong>
+          </td>
+          <td>
+            {{softSkillTotal}}%
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <div id="mainframeskills">
+      <table align="center">
+        <tr class="mainframeskillsheader">
+          <th width="8%">
+            <strong>Criteria</strong>
+          </td>
+          <th width="15%">
+            <strong>Expectation</strong>
+          </td>
+          <th width="5%">
+            <strong>Weight</strong>
+          </td>
+          <th width="5%">
+            <strong>Score</strong>
+          </td>
+          <th width="15%">
+            <strong>Reason</strong>
+          </td>
+          <th width="5%">
+            <strong>Percentage</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Main Frame Ecosystem<br />
+            40% of Overall Ranking
+          </td>
+          <td>
+            <strong>CICS Environment</strong>
+            Operating systems, subsystems/technologies (MVS/TSO/ISPF).
+            Languages/software tools/applications (Online): Cobol CICS, MQ
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_1}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="mainframeSkillSelect.id_1" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected="true">4</option>
+              <option value="5">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_1 * mainframeSkillSelect.id_1}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <strong>Batch Environment</strong>
+            Operating systems, subsystems/technologies (MVS/TSO/ISPF/JCL).
+            Languages/software tools/applications (Batch): Cobol
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_2}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="mainframeSkillSelect.id_2" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected="true">4</option>
+              <option value="5">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_2 * mainframeSkillSelect.id_2}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <strong>Database/File System</strong>
+            DB2 Systems, VSAM, Flat Files
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_3}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="mainframeSkillSelect.id_3" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected="true">4</option>
+              <option value="5">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_3 * mainframeSkillSelect.id_3}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <strong>Main Frame Tools and Utilities</strong>
+            Versioning, testing, building, Monitoring tools (Endeavor, Xped, Omegamon, Strobe, FileAid, BMC, etc.)
+
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_4}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="mainframeSkillSelect.id_4" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected="true">4</option>
+              <option value="5">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{mainframeSkillWeight.id_4 * mainframeSkillSelect.id_4}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <strong>Percentage</strong>
+          </td>
+          <td>
+            <strong>{{mainframeSkillTotal}}%</strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <div id="modernskills">
+      <table align="center">
+        <tr class="modernskillsheader">
+          <th width="8%">
+            <strong>Criteria</strong>
+          </td>
+          <th width="15%">
+            <strong>Expectation</strong>
+          </td>
+          <th width="5%">
+            <strong>Weight</strong>
+          </td>
+          <th width="5%">
+            <strong>Score</strong>
+          </td>
+          <th width="15%">
+            <strong>Reason</strong>
+          </td>
+          <th width="5%">
+            <strong>Percentage</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Distributed / Modern Technologies<br />
+            10% of Overall Ranking
+          </td>
+          <td>
+            <strong>Backend Development</strong>
+            Languages/software tools/Frameworks/Libraries/Backend (Java, J2EE, C++, Web Services) "
+          </td>
+          <td>
+            {{modernSkillWeight.id_1}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="modernSkillSelect.id_1" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{modernSkillWeight.id_1 * modernSkillSelect.id_1}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <strong>Frontend Development</strong>
+            Languages/software tools/Frameworks/Libraries/Frontend (Java Scripting, JQuery, Angular, HTML, XML, JSON).
+          </td>
+          <td>
+            {{modernSkillWeight.id_2}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="modernSkillSelect.id_2" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{modernSkillWeight.id_2 * modernSkillSelect.id_2}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <strong>Infrastructure and Tools</strong>
+            Eclipse, Jboss EAP, OpenShift/Cloud Hosting,
+            Versioning, testing, building, integration tools (Jenkins, Git/Codehub, JUnit).
+          </td>
+          <td>
+            {{modernSkillWeight.id_3}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="modernSkillSelect.id_3" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{modernSkillWeight.id_3 * modernSkillSelect.id_3}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <strong>Database/File System</strong>
+            MySQL, Oracle, Hadoop, SQL Server, MongoDB, etc.
+          </td>
+          <td>
+            {{modernSkillWeight.id_4}}
+          </td>
+          <td>
+            <select id="score" required="true" ng-model="modernSkillSelect.id_4" ng-change="calculateSkill()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected="true">5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="8" cols="50" id="reason" form="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          </td>
+          <td>
+            {{modernSkillWeight.id_4 * modernSkillSelect.id_4}}%
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <strong>Percentage</strong>
+          </td>
+          <td>
+            <strong>{{modernSkillTotal}}%</strong>
+          </td>
+        </tr>
+      </tabe>
+    </div>
+    <br />
+  </section>
+</section>
+</body>
+</html>

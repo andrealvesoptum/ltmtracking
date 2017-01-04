@@ -1,0 +1,46 @@
+input.ng-invalid {
+    background-color: #e9b1b1;
+}
+
+div {
+    padding: 10px;
+    margin: 4;
+}
+
+td {
+  padding: 4px;
+}
+
+tr:hover{background-color: #f5f5f5;}
+
+table {
+   border: 1px solid #ddd;
+   width: 80%;
+
+}
+
+.softskillsheader {
+    background-color: #4BACC6;
+    color: white;
+}
+.mainframeskillsheader {
+    background-color: #F79646;
+    color: white;
+}
+.modernskillsheader {
+    background-color: #8064A2;
+    color: white;
+}
+
+.softskillstotal{
+  background-color: #DAEEF3;
+}
+.mainframeskillstotal{
+  background-color: #FDE9D9;
+}
+.modernskillstotal{
+  background-color: #E4DFEC;
+}
+#softskills tr:nth-child(even){background-color: #DAEEF3}
+#mainframeskills tr:nth-child(even){background-color: #FDE9D9}
+#modernskills tr:nth-child(even){background-color: #E4DFEC}
